@@ -1,0 +1,37 @@
+# 기본 환경 선택
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/dev
+    username: dev
+    password: 123123
+    driver-class-name: org.mariadb.jdbc.Driver
+  redis:
+    host: localhost
+    password: 123123
+    port: 6379
+  autoconfigure: 
+    exclude:
+    # 기본 시큐리티 기능 제외
+    - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    open-in-view: false
+    show-sql: false
+    # hibernate 설정
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  hateoas:
+    use-hal-as-default-json-media-type: false
+  data:
+    rest:
+      base-path: /api
+      default-page-size: 10
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: 8080
+
